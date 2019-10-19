@@ -88,6 +88,10 @@ public class ViewController {
                 + "&dtFrom=" + dateFrom
                 + "&dtTo=" + dateTo;
         List<Rate> eurRatesByPeriodList = xmlService.listOfRates(URL);
+        if(eurRatesByPeriodList.isEmpty()){
+            ra.addFlashAttribute("noResults", "rezultatų nėra");
+            return new ModelAndView("redirect:/valiutu-kursai/periodas");
+        }
 
         ModelAndView mav = new ModelAndView("currencyRatesByPeriodAndCode");
 

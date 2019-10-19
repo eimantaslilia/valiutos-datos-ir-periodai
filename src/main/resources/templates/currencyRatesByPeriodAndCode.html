@@ -35,8 +35,10 @@
                     </div>
 
                     <div class="col-md-4">
-                        <input class="form-control" type="date" id="dateTo" name="dateTo" required="required"><br><br>
+                        <input class="form-control" type="date" id="dateTo" name="dateTo" required="required"><br>
+                        <div th:text="${noResults}" style="color:mediumvioletred"></div><br>
                         <button type="submit" class="btn btn-success" value="Send">Ieškoti</button>
+
                     </div>
 
                     <div class="col-md-4">
