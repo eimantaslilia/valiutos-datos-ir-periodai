@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="en" xlmns:th="http://www.w3.org/1999/xhtml"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml"
+      xlmns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:fragment="common-header">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- BootStrap 4-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+
+        <title>Valiutų Kursai pagal datą</title>
+    </div>
+</head>
+
+<body>
+<div class="container">
+    <br><br><br>
+    <form th:action="@{/valiutu-kursai/data}" method="post">
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+                <h4><a th:href="@{/}">Pagrindinis</a></h4><br><br><br>
+                <h4>1 Euro santykis su užsienio valiutomis</h4><br>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" type="date" id="date" name="date" required="required">
+                    </div>
+                    <div class="col-md-6">
+                        <select name="currency" class="custom-select">
+                            <option value="None">pasirinkti valiutos kodą...</option>
+                            <div th:each="currency : ${currencyList}">
+                                <option th:value="${currency}" th:text="${currency}"></option>
+                            </div>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <p class="font-italic">Jei nepasirinksite valiutos kodo, bus rodomos visos valiutos ir jų santykis su
+                    euru tą dieną</p>
+                <br>
+                <button type="submit" class="btn btn-success" value="submit">Ieškoti</button>
+                <br><br>
+            </div>
+
+            <div class="col-md-3"></div>
+        </div>
+    </form>
+    <div th:if="${date}">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h5 class="text-center"><span th:text="${date}"></span></h5>
+                <br>
+                <table class="table" id="eurRatesByDateTable">
+                    <thead>
+                    <th>Valiuta</th>
+                    <th>1 EUR</th>
+                    </thead>
+                    <tbody>
+                    <tr data-th-each="eurRateByDate: ${rates}">
+                        <td th:text="${eurRateByDate.currencyTypeAbbr}"></td>
+                        <td th:text="${eurRateByDate.amount}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

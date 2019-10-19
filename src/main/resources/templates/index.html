@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" xlmns:th="http://www.w3.org/1999/xhtml"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml"
+      xlmns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:fragment="common-header">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- BootStrap 4-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+
+        <title>Valiutu Kursai</title>
+    </div>
+</head>
+
+<body>
+<div class="container">
+    <br><br><br><br><br><br><br>
+    <div class="text-center">
+        <h5>Euro santykis su užsienio valiutomis</h5><br>
+        <h6>Čia galite sužinoti:</h6>
+        <span class="font-italic">Užsienio valiutų santykį su euru tam tikrą dieną.</span><br>
+        <span class="font-italic">Užsienio valiutų pokytį lyginant su euru per tam tikrą periodą.</span><br><br>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <a th:href="@{/valiutu-kursai/data}" class="btn btn-outline-primary btn-block">Data</a>
+        </div>
+        <div class="col-md-3">
+            <a th:href="@{/valiutu-kursai/periodas}" class="btn btn-outline-secondary btn-block">Periodas</a>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

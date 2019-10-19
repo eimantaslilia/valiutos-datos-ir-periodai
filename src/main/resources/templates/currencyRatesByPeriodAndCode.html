@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="en" xlmns:th="http://www.w3.org/1999/xhtml"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml"
+      xlmns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:fragment="common-header">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- BootStrap 4-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+
+        <title>Valiutų Kursai</title>
+    </div>
+</head>
+
+<body>
+<div class="container">
+    <br><br><br>
+    <form th:action="@{/valiutu-kursai/periodas}" method="post">
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                <h4><a th:href="@{/}">Pagrindinis</a></h4><br><br><br>
+                <h5>Pasirinkite Periodą ir valiutos kodą</h5><br>
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <input class="form-control" type="date" id="dateFrom" name="dateFrom" required="required">
+                        <div th:text="${dateError}" style="color:mediumvioletred;"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <input class="form-control" type="date" id="dateTo" name="dateTo" required="required"><br><br>
+                        <button type="submit" class="btn btn-success" value="Send">Ieškoti</button>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select name="currency" class="custom-select">
+                            <option value="unselected">pasirinkti valiutos kodą...</option>
+                            <div th:each="currency : ${currencyList}">
+                                <option th:value="${currency}" th:text="${currency}"></option>
+                            </div>
+                        </select>
+                        <div th:text="${unselected}" style="color:mediumvioletred"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <br>
+            <div th:if="${firstDate}">
+                <h6 class="text-center"><span th:text="${currencyCode}"></span> valiutos pokytis per šį periodą lyginant
+                    su 1 EUR: </h6><br>
+
+                <table class="table">
+                    <thead>
+                    <th>Pradinė data</th>
+                    <th>Paskutinė data</th>
+                    <th>Pokytis per šį periodą</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${firstDate}"></td>
+                        <td th:text="${lastDate}"></td>
+                        <td>
+                            <span th:text="${currencyChange}"></span>
+                            <span th:text="${didNotChange}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
